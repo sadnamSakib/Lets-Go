@@ -92,7 +92,7 @@ This repository contains my learnings for each day about the fundamentals of the
     |--------|-|--------|------|----
     | Design | Simple and Minimial. Package based design. Shorter syntax and fewer language features. | Object oriented language with rich features. Lot of boilerplate code. | Object oriented language with massive standard library. Easy to read and write for beginners. | Object oriented language with rich features. 
     | Concurrency | Uses Goroutines and channels.  | Uses threads | uses threads | Uses threads
-    | Performance | Incredible  | Good  |  |
+    | Performance | Incredible  | Good  | Slow | Fast
 
 
         

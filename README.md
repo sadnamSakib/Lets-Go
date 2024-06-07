@@ -63,8 +63,9 @@ This repository contains my learnings for each day about the fundamentals of the
                 var input string
                 fmt.Scanln(&input)
                 }
-                ```
-                Normally if we had just called the function f(0) it would have run in the main goroutine. But by using go f(0) we are creating a new goroutine which will run concurrently with the main goroutine.
+
+      
+       Normally if we had just called the function f(0) it would have run in the main goroutine. But by using go f(0) we are creating a new goroutine which will run concurrently with the main goroutine.
             - Channels
                 Channels provide a way for two goroutines to communicate with one another and synchronize their execution.
                 Some rules that channels follow:

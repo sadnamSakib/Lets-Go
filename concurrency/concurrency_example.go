@@ -1,4 +1,4 @@
-package main
+package concurrency
 
 import (
 	"fmt"
@@ -82,7 +82,8 @@ func usingReferenceSharing() {
 	fmt.Scanln()
 
 }
-func main() {
+
+func Concurrency_example() {
 	// go print1()
 	// go print2()
 	usingChannels()

@@ -1,4 +1,4 @@
-# Let-s-Go
+# Let's Go
 This repository contains my learnings for each day about the fundamentals of the Go language.
 
 - ## **What is GO language?**
@@ -43,12 +43,13 @@ This repository contains my learnings for each day about the fundamentals of the
          Go is not an object oriented language.It uses packages to handle dependencies.Packaging is also done in other programming languages but we can choose to not do it if we don't want to.Instead,in Go it is a feature of the language itself. It can be compared to implementing the idea of microservices in source code level.We can think of each package as a different micro service which can be accessed through an api.
          Every package should have a purpose and its name should be very specific to what it does.It can be compared to the single responsibility principle in OOP where each method should have only one responsibility.In this case each package should have a very specific purpose.
          Each package should respect its impact on resources and performance of the user.
-         Packages should be designed while keeping reusability in mind.This makes a package protable.Each package should be as decoupled as possible.
+         Packages should be designed while keeping reusability in mind.This makes a package portable.Each package should be as decoupled as possible.
     - ### **Concurrency** : 
         One of the highlighting features of Go is its concurrency. Concurrent programming is not unique to Go ,other programming languages use threads to handle concurrency. But Go uses goroutines which are basically lightweight threads, therefore we can create thousands of these if we want. Now let's take a look at how concurrency is handled in Go.
-            - Goroutines
+        - Goroutines
                 A goroutine is a function that is capable of running concurrently with other functions. To create a goroutine we use the keyword go followed by the function name. This will create a new goroutine which will run concurrently with the main goroutine.
-                ```                
+
+                              
                 package main
                 import "fmt"
 
@@ -63,17 +64,17 @@ This repository contains my learnings for each day about the fundamentals of the
                 var input string
                 fmt.Scanln(&input)
                 }
-                ```
-                Normally if we had just called the function f(0) it would have run in the main goroutine. But by using go f(0) we are creating a new goroutine which will run concurrently with the main goroutine.
-            - Channels
-                Channels provide a way for two goroutines to communicate with one another and synchronize their execution.
-                Some rules that channels follow:
-                - A channel type is represented with the keyword chan
-                - the <- operator is used to send and receive messages from the channel
-                - Suppose a <- b , b waits until a is ready to receive the message from b
-                - We can specify channel direction which can be send only, receive only or both
-                - Channels are asynchronous unless they are buffered channels. Buffered channels are asynchronous and does not wait for sending or recieveing messages unless the channel is full.Buffered channels are created using a second paramater inside the make function.
-            - Select
+                
+        Normally if we had just called the function f(0) it would have run in the main goroutine. But by using go f(0) we are creating a new goroutine which will run concurrently with the main goroutine.
+        - Channels
+            Channels provide a way for two goroutines to communicate with one another and synchronize their execution.
+            Some rules that channels follow:
+            - A channel type is represented with the keyword chan
+            - the <- operator is used to send and receive messages from the channel
+            - Suppose a <- b , b waits until a is ready to receive the message from b
+            - We can specify channel direction which can be send only, receive only or both
+            - Channels are asynchronous unless they are buffered channels. Buffered channels are asynchronous and does not wait for sending or recieveing messages unless the channel is full.Buffered channels are created using a second paramater inside the make function.
+        - Select
                 The select statement works much like a switch case statement but for channels. It waits for any of the cases to be ready and executes the corresponding case. If multiple cases are ready, it randomly selects one of them.
     - ### **Garbage Collection** : 
         Go is a garbage collected language. This means that the memory is managed automatically by the Go runtime. The garbage collector runs in the background and reclaims memory that is no longer being used by the program. Languages like C don't heave this feature. In those languages the developer has to manually allocate and deallocate memory. This can lead to memory leaks and other problems.Go uses Tricolor mark and Sweep algorithm for garbage collection.
@@ -86,13 +87,36 @@ This repository contains my learnings for each day about the fundamentals of the
         Go is not an object oriented language and therefore it does not have the concept of classes or inheritance.Instead Go uses interfaces to achieve polymorphism. An interface is a set of methods that a type must implement if the type has to implement the interface. In Go we don't need to explicity implement an interface. It is done implicitly by the language if a type has implemented all the methods of an interface.There is also a concept of empty interface which is an interface with no methods. This can be used to store any type of value.
     - ### **Structs** : 
         Like C and C++ Go has a struct type. A struct is a collection of fields. It is used to define custom data types. It is similar to classes in object oriented programming languages except that it does not have any methods.
-- ## **Comparison**
+- ## **Comparison with other languages**
     In this section we want to compare Go with some other languages like Java, Python and C++.
     |  | Go | Java | Python | C++
     |--------|-|--------|------|----
     | Design | Simple and Minimial. Package based design. Shorter syntax and fewer language features. | Object oriented language with rich features. Lot of boilerplate code. | Object oriented language with massive standard library. Easy to read and write for beginners. | Object oriented language with rich features. 
-    | Concurrency | Uses Goroutines and channels.  | Uses threads | uses threads | Uses threads
-    | Performance | Incredible  | Good  | Slow | Fast
+    | Concurrency | Uses Goroutines and channels  | Uses threads | Uses threads | Uses threads
+    | Speed | Incredible  | Good  | Slow | Fast
+    | Memory Footprint | Low | High | High | Low 
+    | Garbage Collection | Yes | Yes | Yes | No
+    | Static Typing | Yes | Yes | No | Yes
+    | Cross Platform | Yes | Yes | Yes | Yes
+    | Object Oriented | No | Yes | Yes | Yes
+    | Virtual Machine | No | Yes | Yes | No
+
+- ## **Use Cases of Go**
+    | | |
+    |--------|--------|
+    | Web Development | Go is used to make fast and scalable web application backends. |
+    | Cloud & Network Services | With a strong ecosystem of tools and APIs for major cloud platforms , it is easy to build services with Go |
+    | CLIs | Go is used to create fast and elegant CLIs |
+    | DevOps & SRE | Because of fast build times and lean syntax, Go is built to support DevOps and SRE. |
+        
+- ## **Popular Companies that Use Go**
+    - Google 
+    - Uber
+    - Twitch
+    - Dropbox
+    - Docker
+    - Soundcloud
+    
 
 
         
@@ -102,5 +126,10 @@ This repository contains my learnings for each day about the fundamentals of the
 - [Gopherfest 2015 - Rob Pike ](https://www.youtube.com/watch?v=PAAkCSZUG1c&list=PLEcwzBXTPUE9V1o8mZdC9tNnRZaTgI-1P&index=4)
 - [Package Oriented Design - William Kennedy](https://www.youtube.com/watch?v=spKM5CyBwJA&list=PLEcwzBXTPUE9V1o8mZdC9tNnRZaTgI-1P&index=9)
 - [Why Golang compiles so fast? ](https://www.youtube.com/watch?v=BYsspvUqCbM)
+- [Golang vs Java](https://www.matellio.com/blog/golang-vs-java/#:~:text=Go%20excels%20in%20terms%20of,may%20require%20more%20memory%20resources)
+- [Golang vs Python](https://www.tftus.com/blog/python-vs-golang-which-language-to-choose#:~:text=Python%20is%20acclaimed%20for%20its,simplicity%2C%20performance%2C%20and%20extensibility)
+- [Golang vs C++](https://codedamn.com/news/developer-tips/golang-vs-c-which-is-best-for-you)
+- [Use cases of Golang](https://go.dev/solutions/use-cases)
+
 
 

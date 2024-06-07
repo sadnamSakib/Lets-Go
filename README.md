@@ -64,6 +64,18 @@ This repository contains my learnings for each day about the fundamentals of the
                 var input string
                 fmt.Scanln(&input)
                 }
+
+      
+       Normally if we had just called the function f(0) it would have run in the main goroutine. But by using go f(0) we are creating a new goroutine which will run concurrently with the main goroutine.
+            - Channels
+                Channels provide a way for two goroutines to communicate with one another and synchronize their execution.
+                Some rules that channels follow:
+                - A channel type is represented with the keyword chan
+                - the <- operator is used to send and receive messages from the channel
+                - Suppose a <- b , b waits until a is ready to receive the message from b
+                - We can specify channel direction which can be send only, receive only or both
+                - Channels are asynchronous unless they are buffered channels. Buffered channels are asynchronous and does not wait for sending or recieveing messages unless the channel is full.Buffered channels are created using a second paramater inside the make function.
+            - Select
                 
         Normally if we had just called the function f(0) it would have run in the main goroutine. But by using go f(0) we are creating a new goroutine which will run concurrently with the main goroutine.
         - Channels

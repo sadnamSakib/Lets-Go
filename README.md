@@ -128,6 +128,21 @@ This repository contains my learnings for each day about the fundamentals of the
     - Dropbox
     - Docker
     - Soundcloud
+
+# Tutorial
+
+## **Day 1**
+- ### **Hello World**
+    - To print Hello World in Go, we use the fmt package.
+    ```go
+    package main
+    import "fmt"
+    func main() {
+        fmt.Println("Hello, World!")
+    }
+    ```
+    
+
     
 
 

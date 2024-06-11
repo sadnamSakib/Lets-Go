@@ -1,6 +1,8 @@
 # Let's Go
 This repository contains my learnings for each day about the fundamentals of the Go language.
 
+> **_"A language that doesn't affect the way you think about programming is not worth knowing" - Alan J.Perlis_**
+
 - ## **What is GO language?**
     - Go is a procedural programming language. It was developed in 2007 by Robert Griesemer, Rob Pike, and Ken Thompson at Google but launched in 2009 as an open-source programming language.Programs are assembled by using packages, for efficient management of dependencies.It is a statically typed, concurrent and garbage-collected programming language.
 - ## **Inspiration**

@@ -9,7 +9,7 @@ import (
 var data = []int{}
 
 func fillArray() {
-	for i := 0; i < 100000000; i++ {
+	for i := 0; i < 160000000; i++ {
 		data = append(data, i)
 	}
 
@@ -43,7 +43,7 @@ func ReadArray() {
 	fmt.Printf("Time taken without concurrency: %v \n", elapsed)
 
 	start = time.Now()
-	numGoroutines := 10
+	numGoroutines := 4
 	chunkSize := len(data) / numGoroutines
 
 	for i := 0; i < numGoroutines; i++ {

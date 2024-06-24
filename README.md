@@ -143,6 +143,117 @@ This repository contains my learnings for each day about the fundamentals of the
         fmt.Println("Hello, World!")
     }
     ```
+## **Day 2**
+- ### **Basic Types**
+    - Go has 25 keywords and a bunch of operators and symbols
+    - **Constants** : Constants are declared using the const keyword. They are immutable.
+    - **Functions** : make len cap new append copy close delete complex real imag panic recover
+    - **Types** : bool string int int8 int16 int32 int64 uint uint8 uint16 uint32 uint64 uintptr byte rune float32 float64 complex128 complex64
+    - **Machine-native vs Interpreted Variables** : <br>
+        <img src="image.png" alt="variables in machine-native vs interpreted languages" width="400"/>
+        <br>
+        In an interpreted language, the variable is an object that reperesents as a number to the interpreter. In a machine-native language, the variable is a memory location that holds a value.Therefore in machine-native language the operations are faster.
+    - **Declaraing Variables** :
+        - **var** : The var keyword is used to declare a variable. The type of the variable is mentioned after the variable name.
+        - **:=** : The := operator is used to declare and initialize a variable. The type of the variable is inferred from the value assigned to it.
+
+        ```go
+        package main
+        import "fmt"
+        func main() {
+            var a int = 10
+            b := 20
+            var(
+                c = 30
+                d = 40.1
+            )
+            c = 35
+            fmt.Println(a,b,c,d)
+        }
+         ```
+
+    - **Special Types** : 
+        - bool : Boolean has only two values false and true and they are not the same as 0 and 1.
+        - error : A special type with one function, Error().
+        - Pointers : A pointer is a memory address. It is used to store the memory address of a variable.
+
+
+    - **Zero Values** : If a variable is declared without being initialized, it is assigned a zero value. The zero value of a variable depends on its type.
+    - **Type Conversion** : Go is a statically typed language. Therefore we need to convert the type of a variable if we want to assign it to another variable of a different type.
+## **Day 3**
+- ### **Control Structures**
+    - **If Else** : The if else statement is used to execute a block of code if a condition is true. If the condition is false, the code inside the else block is executed.
+    - **Switch** : The switch statement is used to execute a block of code based on the value of a variable. It is similar to a series of if else statements.
+    - **For Loop** : The for loop is used to execute a block of code multiple times. It has three components: the init statement, the condition, and the post statement.
+    - **Range** : The range keyword is used to iterate over items in a collection. It returns two values: the index and the value.
+    - **Break** : The break statement is used to exit a loop.
+    - **Continue** : The continue statement is used to skip the current iteration of a loop.
+    - **Goto** : The goto statement is used to jump to a label in the code.
+    - **Defer** : The defer keyword is used to delay the execution of a function until the surrounding function returns.
+    - **Panic and Recover** : The panic function is used to cause a runtime error. The recover function is used to handle the panic and resume normal execution.
+## **Day 4**
+- ### **Strings**
+    - byte : A synonym for uint8
+    - rune : A synonym for int32 for characters
+    - string : An immutable sequence of "characters" which is physically a sequence of bytes (UTF-8 encoding) and logically a sequence of (unicode) runes
+    - Runes are enclosed in single quotes , they can be of multiple bytes 
+    - Strings are immutable which means we cannot change a value of an index of a string. But we can however do string concatenation.
+    - 
+        ```go
+        func t1() {
+        s := "ও "
+        s += " hello"
+        fmt.Printf("%T %[1]v If we use len function to find length of the string : %d\n", s, len(s))
+        fmt.Printf("If we use utf8 package to count the number of cahracters : %d\n", utf8.RuneCountInString(s))
+        fmt.Printf("%T %[1]v Length of the array of rune : %d\n", []rune(s), len([]rune(s)))
+        fmt.Printf("%T %[1]v  Length of array of bytes : %d\n", []byte(s), len([]byte(s)))
+        }
+        ```
+    - Output:<br>
+    <img src="image-1.png" alt="example of runes vs bytes vs strings" width="400"/>
+    <br>
+    - Structure of string : <br>
+    <img src="image-2.png" alt="underlying structure of strings" width="400"/>
+    <br>
+    - The (strings package)[https://pkg.go.dev/strings] in Go offers a variety of different string related functions.
+
+## **Day 5**
+- ### **Arrays, Slices and Maps**
+    - Arrays :
+        - Arrays are a collection of elements of the same type.
+        - The length of an array is fixed.
+        - Arrays are passed by value.
+        - The size of an array is part of its type.
+        - Arrays are zero-indexed.
+        - Arrays can be multi-dimensional.
+        - Arrays are comparable and therefore can be used as map keys.
+    - Slices :
+        - Slices are a flexible version of arrays.
+        - Slices are a reference to an underlying array.
+        - Slices have a length and a capacity.
+        - Slices are passed by reference.
+        - Slices are zero-indexed.
+        - Slices can be created using the make function.
+        - Slices can be appended to.
+        - Slices can be copied.
+        - Slice are not comparable, therefore cannot be used as map keys.
+        - A nil slice is a slice with a length and capacity of 0 which means no storage has been assigned to it whereas a slice with a length of 0 means that storage has been assigned to it but it is empty.The make function is used to make an empty slice.
+    - Maps :
+        - Maps are a collection of key-value pairs.
+        - Maps are unordered.
+        - Maps are passed by reference.
+        - Maps are reference types.
+        - Maps can be created using the make function.
+        - Maps can be iterated over.
+        - Maps can be deleted.
+        - Maps can be used to implement sets , cache etc
+        - A nil map is a map with no storage assigned to it.Therefore it is not possible to add keys to a nil map.
+        - The make function is used to make an empty map which has a storage assigned to it.
+        - mapName["key"] returns two values : the value and a boolean which is true if the key is present in the map and false if it is not present.
+
+    
+    
+
     
 
     
@@ -159,6 +270,7 @@ This repository contains my learnings for each day about the fundamentals of the
 - [Golang vs Python](https://www.tftus.com/blog/python-vs-golang-which-language-to-choose#:~:text=Python%20is%20acclaimed%20for%20its,simplicity%2C%20performance%2C%20and%20extensibility)
 - [Golang vs C++](https://codedamn.com/news/developer-tips/golang-vs-c-which-is-best-for-you)
 - [Use cases of Golang](https://go.dev/solutions/use-cases)
+- [Go Class](https://www.youtube.com/watch?v=nxWqANttAdA&list=PLoILbKo9rG3skRCj37Kn5Zj803hhiuRK6&index=1)
 
 
 

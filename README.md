@@ -215,7 +215,7 @@ This repository contains my learnings for each day about the fundamentals of the
     - Structure of string : <br>
     <img src="image-2.png" alt="underlying structure of strings" width="400"/>
     <br>
-    - The (strings package)[https://pkg.go.dev/strings] in Go offers a variety of different string related functions.
+    - The [strings package](https://pkg.go.dev/strings) in Go offers a variety of different string related functions.
 
 ## **Day 5**
 - ### **Arrays, Slices and Maps**
@@ -251,7 +251,222 @@ This repository contains my learnings for each day about the fundamentals of the
         - The make function is used to make an empty map which has a storage assigned to it.
         - mapName["key"] returns two values : the value and a boolean which is true if the key is present in the map and false if it is not present.
 
-    
+## **Day 6**
+- ### **Control Statements , Declarations & Types**
+    - **Control Statements** :
+        - if-else : 
+            ```go
+            if condition {
+                // code
+            } else {
+                // code
+            }
+            ```
+        - switch-case : 
+            ```go
+            switch expression {
+                case value1:
+                    // code
+                case value2:
+                    // code
+                default:
+                    // code
+            }
+            ```
+        - for loop : 
+            ```go
+            for init; condition; post {
+                // code
+            }
+            ```
+        - range : 
+            ```go
+            for index, value := range collection {
+                // code
+            }
+            ```
+        - break : 
+            ```go
+            for {
+                if condition {
+                    break
+                }
+            }
+            ```
+        - continue : 
+            ```go
+            for {
+                if condition {
+                    continue
+                }
+            }
+            ```
+        - Labels : 
+            ```go
+            outer:
+            for {
+                for {
+                    break outer
+                }
+            }
+            ```
+    - **Packages**
+        - Every standalone program has a main package.
+        - Nothing is "global" ; it's either in one package or another.
+        - There is function scope and package scope.
+        - Every name that's capitalized is exported.Which means it can be accessed from other packages if the package is imported.
+        - Unused import of packages give a compile error.
+        - There is no circular dependency of packages in go.Which means if package "B" imports package "A" then package "A" cannot import package "B".
+        - init function is used to initialize the package. It is called before the main function.
+    - **Declarations**
+        - The short declaration operator has some rules : 
+            - It cannot be used outside of a function.
+            - It must be used in a control statement instead of var.
+            - It must declare at least one new variable.So cannot be used for redeclarations within the same scope.
+    - **Structural Typing**
+        - It's the same type if it has the same structure or behavior:
+            - Arrays of the same size and base type
+            - Structs with the same sequence of fields and types
+            - Functions with the same sequence of parameter types and return types
+            - Interfaces with the same methods
+            - Slices with same base type
+            - Maps of the same key and value types
+    - **Named Typing**
+        - It's only the same type if it has the same declared type name
+        ```go
+        type myInt int
+        func main(){
+            var a myInt
+            a = 10
+            var b int
+            b = 10
+            fmt.Println(a == b) // This will give an error
+        }
+        ```
+    - **Type Conversion**
+        - Go is a statically typed language. Therefore we need to convert the type of a variable if we want to assign it to another variable of a different type.
+        - The conversion is done by using the type name in parentheses before the value.
+        - The conversion is explicit and not implicit.
+        - The conversion is not always possible. For example, we cannot convert a string to an int.
+        - The conversion is not always safe. For example, converting a float to an int will truncate the decimal part.
+    - **Basic Operators**
+        - Arithmetic Operators : + - * / % ++ --
+        - Relational Operators : == != > < >= <=
+        - Logical Operators : && || !
+        - Bitwise Operators : & | ^ << >> &^
+        - Assignment Operators : = += -= *= /= %= <<= >>= &= ^= |= &^=
+        - Misc Operators : & * <-
+        - Operator precedence follows BODMAS rule or else left-to-right.
+
+## **Day 7**
+- ### **I/O**
+    - Standard input,output,error (output) are the three standard I/O streams.
+    - The fmt package uses refelction and can print anything
+    <br><br>
+    - **Standard I/O**<br><br>
+    - Scan() , Scanf() , Scanln() functions are used to read input from the standard input
+    - Println,Printf functions print to the standard output
+    - Fprintlm,Fprintf functions print to anything that has the correct Write() method
+    - Sprintl,Sprintf function returns a string
+    - Format codes
+        - %s - Uninterpreted bytes if the string or slice
+        - %q - Double-quoted string
+        - %c - Character
+        - %d - Decimal integer
+        - %x - Hexadecimal integer
+        - %f - Floating-point number
+        - %t - Boolean
+        - %v - Any value
+        - %T - Type of the value
+        <br><br>
+    - **File I/O**<br><br>
+    - [Package os](https://pkg.go.dev/os) has functions to open or create files etc
+    - [Packahe io](https://pkg.go.dev/io) has utilities to read and write files
+    - [Package bufio](https://pkg.go.dev/bufio) provies the buffered I/O scanners etc
+    - [Package io/ioutil](https://pkg.go.dev/io/ioutil) provides some utility functions such as reading an entire file to memory or writing out all at once.
+    - [Package strconv](https://pkg.go.dev/strconv) has utilities to convert strings to numbers and vice versa.
+    - A simple example of reading and writing to a file:
+    ```go
+    package main
+    import (
+        "fmt"
+        "os"
+    )
+    func main() {
+        file, err := os.Create("test.txt")
+        if err != nil {
+            fmt.Println(err)
+            return
+        }
+        defer file.Close()
+        file.WriteString("Hello, World!")
+    }
+    ```
+
+## **Day 8**
+- ### **Functions, Parameters & Defer**
+    - Functions are first class object , which means we can
+        - Define them - even inside another function
+        - Create anonymous function literals
+        - Pass them as function parameters/return values
+        - Store them in variables
+        - Store them in slices and maps (not as keys)
+        - Store them as fields of a structure type
+        - Send and recieve them in channels
+        - Write methods against a function type
+        - Compare a function var against nil
+    - Paramaters are always passed by copying the value of something.If it is a slice which we said that is passed by reference it means that the pointer/descriptor is copied not the actual data.Therefore we can change the value of the slice within a function.
+    - Functions can have multiple return values
+    - Functions can have variadic parameters
+    ```go
+    package main
+    import "fmt"
+    func main() {
+        fmt.Println(add(1, 2, 3, 4, 5))
+    }
+    func variadicExample(numbers ...int) int {
+        sum := 0
+        for _, number := range numbers {
+            sum += number
+        }
+        return sum
+    }
+    func multipleReturnExample(number int)(int,bool){
+        if number % 2 == 0 {
+            return number,true
+        }
+        return number,false
+    }
+    ```
+    - Defer statement captures a function call to return later
+    - Defer is used to ensure that a function call is performed regardless of the outcome of the surrounding function when the function exits
+    - The scope of a defer statement is the function, not a block
+    - In case of multiple defer statements , the last defer statement is executed first
+    - Commonly used in cases like closing files after opening it, close a socket or HTTP request , unlock a mutex etc.
+    - Defer copies arguments to the deferred call , which means that if the arguments to a function are changed after the defer statement is called, the deferred function will still use the original values.
+    - Defer can also call anonymous functions
+    - Example
+    ```go
+    package main
+    import "fmt"
+    func main() {
+        defer fmt.Println("World")
+        fmt.Println("Hello")
+    }
+    ```
+    - Output : Hello World
+
+
+
+
+
+
+
+
+
+            
+
+        
     
 
     

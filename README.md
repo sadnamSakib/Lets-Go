@@ -455,9 +455,39 @@ This repository contains my learnings for each day about the fundamentals of the
     }
     ```
     - Output : Hello World
+## **Day 9**
+- ### **Closures**
+    - A closure is when a function inside another function "closes over" one or more local variables of the outer function.
+    - The function may access and assign to the referenced variables.
+    - The function is bound to the variables.
+    ```go
+    {
+        func fib() func() int{
+            a,b := 0,1
+            return func() int{
+                a,b = b,a+b
+                return a
+            }
+        }
+        f := fib()
+        for i := 0; i < 10; i++ {
+            fmt.Println(f())
+        }
+    }
+    ```
 
+    - The inner function can access the variables of the outer function and changes them.Hence it needs to know where these variables are. Thus it is a closure.
+    - The sort function takes help of closures to sort the whole slice of variables.
+    - Normal function pointers vs closures : <br>
+    <img src="image-3.png" alt="Closures" width="400"/>
+    <br><br>
+    **Scope vs Lifetime**
+    - Scope is static, based on the coee at compile time.
+    - Lifetime depends on program execution (runtime). The lifetime of a variable can exceed the scope of the function where it is declared.For example : if we return the pointer to a variable , the variable lives on as long as someone has the pointer.In this case the variable is stored in the heap.
 
-
+## **Day 10**
+- ### **Slices in Detail** 
+    - 
 
 
 

@@ -15,7 +15,7 @@ func fillArray() {
 
 }
 
-func sumArrayConcurrently(s int, e int, wg *sync.WaitGroup, result chan<- int) {
+func sumArrayConcurrently(s int, e int, wg *sync.WaitGroup, result chan int) {
 	sum := 0
 	defer wg.Done()
 	for i := s; i < e; i++ {
@@ -57,8 +57,10 @@ func ReadArray() {
 	}()
 
 	sum := 0
+
 	for r := range result {
 		sum += r
+		fmt.Println("Sum from goroutine:", r)
 	}
 
 	elapsed = time.Since(start)

@@ -266,6 +266,10 @@ This repository contains my learnings for each day about the fundamentals of the
         - Structs can be used to implement interfaces by implementing all methods of an interface.
         - Structs can be  used to format JSON data , XML data etc.
         - Two structs are compatible if the fields have same types and names , same order.
+        - Anonymous structs are used when we don't want to give a name to a struct.
+        - Anonymous structs are compatible so we can use equal sign between two anonymous structs.
+        - But if we specifically give different type names for two simillar structs , they are not compatible anymore but they are convertible from one struct to another.
+        - Empty struct takes up no space which can be useful while implementing a set.
         - Example of a struct with different types and names and json tags
         ```go{
             type Employee struct {
@@ -512,8 +516,65 @@ This repository contains my learnings for each day about the fundamentals of the
     - Lifetime depends on program execution (runtime). The lifetime of a variable can exceed the scope of the function where it is declared.For example : if we return the pointer to a variable , the variable lives on as long as someone has the pointer.In this case the variable is stored in the heap.
 
 ## **Day 10**
-- ### **Slices in Detail** 
-    - 
+- ### **JSON** 
+    - JSON is a lightweight data interchange format.
+    - It is easy for humans to read and write.
+    - It is easy for machines to parse and generate.
+    - In go we use structs instead of maps to unmarshal JSON data.
+    - The json package is used to encode and decode JSON data.
+    - To encode or decode from a struct we need to export all the fields of a struct.
+    - The json.Marshal function is used to encode JSON data.
+    - Example of encoding JSON data
+    ```go
+    package main
+    import (
+        "encoding/json"
+        "fmt"
+    )
+    type Person struct {
+        Name string
+        Age  int
+    }
+    func main() {
+        p := Person{"John", 30}
+        b, err := json.Marshal(p)
+        if err != nil {
+            fmt.Println(err)
+            return
+        }
+        fmt.Println(string(b))
+    }
+    ```
+    - The json.Unmarshal function is used to decode JSON data.
+    - Example of decoding JSON data
+    ```go
+    package main
+    import (
+        "encoding/json"
+        "fmt"
+    )
+    type Person struct {
+        Name string
+        Age  int
+    }
+    func main() {
+        b := []byte(`{"Name":"John","Age":30}`)
+        var p Person
+        err := json.Unmarshal(b, &p)
+        if err != nil {
+            fmt.Println(err)
+            return
+        }
+        fmt.Println(p)
+    }
+    ```
+    - The json package uses reflection to encode and decode JSON data.
+    - The json package uses tags to specify how a struct field should be encoded or decoded.
+
+## **Day 11**
+- ### **HTTP**
+
+
 
 
 

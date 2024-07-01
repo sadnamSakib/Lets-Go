@@ -218,7 +218,7 @@ This repository contains my learnings for each day about the fundamentals of the
     - The [strings package](https://pkg.go.dev/strings) in Go offers a variety of different string related functions.
 
 ## **Day 5**
-- ### **Arrays, Slices and Maps**
+- ### **Arrays, Slices , Maps, Structs**
     - Arrays :
         - Arrays are a collection of elements of the same type.
         - The length of an array is fixed.
@@ -230,7 +230,7 @@ This repository contains my learnings for each day about the fundamentals of the
     - Slices :
         - Slices are a flexible version of arrays.
         - Slices are a reference to an underlying array.
-        - Slices have a length and a capacity.
+        - Slices have a length and a capacity. Length indidcates the number of data it has and capacity indicates the number of data it can hold until it is filled.After it is filled the array is copied to another location with a bigger capacity.(Twice the previous capacity)
         - Slices are passed by reference.
         - Slices are zero-indexed.
         - Slices can be created using the make function.
@@ -238,6 +238,10 @@ This repository contains my learnings for each day about the fundamentals of the
         - Slices can be copied.
         - Slice are not comparable, therefore cannot be used as map keys.
         - A nil slice is a slice with a length and capacity of 0 which means no storage has been assigned to it whereas a slice with a length of 0 means that storage has been assigned to it but it is empty.The make function is used to make an empty slice.
+        - If a slicing operation is done with a slice it takes a portion of the original slice. If the slice is changed the original slice is also changed because the slice is not a copy rather the location of the original slice with different length but same capacity.
+        - a[low:high:capacity] returns a slice from low to high-1 with capacity of capacity.
+        - We cannot take the address of an element inside the slice like &a[0] , because the slice location can change and we might not find the value that we are looking for,hence it is a risky operation.
+
     - Maps :
         - Maps are a collection of key-value pairs.
         - Maps are unordered.
@@ -247,9 +251,31 @@ This repository contains my learnings for each day about the fundamentals of the
         - Maps can be iterated over.
         - Maps can be deleted.
         - Maps can be used to implement sets , cache etc
+        - Maps are not comparable and therefore cannot be used as map keys.
+        - We cannot take the address of an element inside the map like &a[key] , because the slice location can change and we might not find the value that we are looking for,hence it is a risky operation.
+        - If we keep structs inside maps we cannot change the values of those structs , therefore we usually keep the address of the structure in a map.
         - A nil map is a map with no storage assigned to it.Therefore it is not possible to add keys to a nil map.
         - The make function is used to make an empty map which has a storage assigned to it.
         - mapName["key"] returns two values : the value and a boolean which is true if the key is present in the map and false if it is not present.
+    
+    - Structs :
+        - Structs are a collection of fields.
+        - Structs are used to define custom data types.
+        - Structs are value types.
+        - Structs are comparable.
+        - Structs can be used to implement interfaces by implementing all methods of an interface.
+        - Structs can be  used to format JSON data , XML data etc.
+        - Two structs are compatible if the fields have same types and names , same order.
+        - Example of a struct with different types and names and json tags
+        ```go{
+            type Employee struct {
+            Name   string    `json:"name"`
+            Number int       `json:"number"`
+            Boss   *Employee `json:"boss"`
+            }
+        }
+        ```
+
 
 ## **Day 6**
 - ### **Control Statements , Declarations & Types**
